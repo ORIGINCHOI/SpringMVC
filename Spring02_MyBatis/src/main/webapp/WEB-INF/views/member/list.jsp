@@ -25,6 +25,7 @@
                   <td>${tmp.num }</td>
                   <td>${tmp.name }</td>
                   <td>${tmp.addr }</td>
+                  <td><a href="delete?num=${tmp.num }">삭제</a></td>
                </tr>
             </c:forEach>
          </tbody>

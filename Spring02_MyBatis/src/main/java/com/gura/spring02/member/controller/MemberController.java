@@ -17,6 +17,12 @@ public class MemberController {
 	@Autowired
 	private MemberDao dao;
 	
+	@RequestMapping("/member/delete")
+	public String delete(int num) {// get 방식 전송 파라미터도 추출 가능    ?num=x
+		dao.delete(num);
+		return "redirect:/member/list";
+	}
+	
 	@RequestMapping("/member/insert")
 	public String insert(MemberDto dto) {//폼전송되는 name, addr 이 자동으로 추출되어서 MemberDto 에 담겨서 전달된다.
 		dao.insert(dto);
@@ -31,15 +37,15 @@ public class MemberController {
 	
 	@RequestMapping("/member/list")
 	public ModelAndView getList(ModelAndView mView) {
-		// 주입받은 MemberDao 객체를 이용해서 회원 목록을 얻어온다.
+		//주입받은 MemberDao 객체를 이용해서 회원 목록을 얻어온다.
 		List<MemberDto> list=dao.getList();
 		
 		// view page 에 전달할 Model 을 담는다.
 		mView.addObject("list", list);
-		// view page 정보도 담아서
+		// view page 정보도 담아서 
 		mView.setViewName("member/list");
 		
-		//리턴해 준다.
+		//리턴해 준다. 
 		return mView;
 	}
 }

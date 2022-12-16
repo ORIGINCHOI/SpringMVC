@@ -18,12 +18,11 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public void insert(MemberDto dto) {
 		/*
-		 * mapper's namespace => member
-		 * sql's id => insert
-		 * parameterType => MemberDto
+		 *  mapper's namespace => member
+		 *  sql's id => insert
+		 *  parameterType => MemberDto 
 		 */
 		session.insert("member.insert", dto);
-		
 	}
 
 	@Override
@@ -34,8 +33,12 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public void delete(int num) {
-		// TODO Auto-generated method stub
-		
+		/*
+		 *  mapper's namespace => member
+		 *  sql's id => delete
+		 *  parameterType => int
+		 */
+		session.delete("member.delete", num);
 	}
 
 	@Override
@@ -47,14 +50,14 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public List<MemberDto> getList() {
 		/*
-		 * mapper's namespace => member
-		 * sql's id => getList
-		 * resultType => MemberDto
-		 * return type => List
+		 *  mapper's namespace => member
+		 *  sql's id => getList
+		 *  resultType => MemberDto
+		 *  return type => List
 		 */
 		List<MemberDto> list=session.selectList("member.getList");
 		
-		return null;
+		return list;
 	}
-	
+
 }
