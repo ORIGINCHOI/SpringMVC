@@ -16,6 +16,8 @@
               username="scott" password="tiger" maxTotal="20" maxIdle="10"
               maxWaitMillis="-1"/>          
    -->
+   
+   
    <beans:bean id="dataSource" 
       class="org.springframework.jndi.JndiObjectFactoryBean">
       <beans:property name="jndiName" value="java:comp/env/jdbc/myoracle"/>
@@ -31,12 +33,13 @@
    <!-- 
       SqlSessionFactory 객체 
       Configuration.xml 문서가 어디에 있는지 알려야 한다. 
+      value 에서 claspath: 은 src/resources 폴더를 가리킨다.
+           따라서 classpath:Configuration.xml 은 src/resources 폴더안에 존재 해야 한다.
    -->
    <beans:bean id="sessionFactory" 
       class="org.mybatis.spring.SqlSessionFactoryBean">
       <beans:property name="dataSource" ref="dataSource"/>
-      <beans:property name="configLocation"
-   value="classpath:Configuration.xml"/>
+      <beans:property name="configLocation" value="classpath:Configuration.xml"/>
    </beans:bean>
    <!-- 
       sessionFactory=new SqlSessionFactoryBean();
