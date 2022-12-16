@@ -4,7 +4,7 @@
 	
 	<update id="update" parameterType="com.gura.spring02.member.dto.MemberDto">
 		UPDATE member
-		SET name=#{name, jdbcType=VARCHAR}, addr=#{addr, jdbcType=VARCHAR}
+		SET name=#{name}, addr=#{addr}
 		WHERE num=#{num}
 	</update>
 	
