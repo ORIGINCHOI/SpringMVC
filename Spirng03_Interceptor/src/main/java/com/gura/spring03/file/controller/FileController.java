@@ -1,6 +1,14 @@
 package com.gura.spring03.file.controller;
 
 import java.io.File;
+/*
+ *	 [ Spring mvc 파일 업로드 처리 ]
+ *	 
+ *	 1. pom.xml 에 아래의 dependency 가 있어야 한다.
+ *	 2. servlet-context.xml 에 MultipartResolver bean 설정이 있어야 한다.
+ *	 3. MultipartFile 객체를 컨트롤러에서 받아서 사용하면 된다.
+ *	 
+ */
 
 import javax.servlet.http.HttpServletRequest;
 
