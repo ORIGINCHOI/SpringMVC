@@ -116,7 +116,7 @@ public class UsersServiceImpl implements UsersService{
 		dto.setId(id);
 		//만일 프로필 이미지를 등록하지 않은 상태이면
 		if(dto.getProfile().equals("empty")) {
-			//users 테이블의 profile 칼럼을 null 인 상태로 유지하기 위해 profile 에 null 을 넣어준다.
+			//users 테이블의  profile 칼럼을 null 인 상태로 유지하기 위해 profile 에 null 을 넣어준다.
 			dto.setProfile(null);
 		}
 		dao.update(dto);
