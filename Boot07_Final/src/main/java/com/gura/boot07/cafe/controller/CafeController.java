@@ -27,7 +27,7 @@ public class CafeController {
 	}
 	
 	@RequestMapping("/cafe/insertform")
-	public String inserform() {
+	public String insertform() {
 		return "cafe/insertform";
 	}
 	
@@ -49,66 +49,65 @@ public class CafeController {
 		return "cafe/detail";
 	}
 	
-    @RequestMapping("/cafe/delete")
-    public String delete(int num, HttpServletRequest request) {
-       service.deleteContent(num, request);
-       return "redirect:/cafe/list";
-    }
-    
-    @RequestMapping("/cafe/updateform")
-    public String updateForm(HttpServletRequest request) {
-    	service.getData(request);
-    	return "cafe/updateform";
-    }
-    
-    @RequestMapping("/cafe/update")
-    public String update(CafeDto dto) {
-    	service.updateContent(dto);
-    	return "cafe/update";
-    }
-    //새로운 댓글 저장 요청 처리
-    @RequestMapping("/cafe/comment_insert")
-    public String commentInsert(HttpServletRequest request, int ref_group) {
-       
-       service.saveComment(request);
-    
-       return "redirect:/cafe/detail?num="+ref_group;
-    }
-    //댓글 더보기 요청 처리
-    @RequestMapping("/cafe/ajax_comment_list")
-    public String commentList(HttpServletRequest request) {
-       
-        //테스트를 위해 시간 지연 시키기
-    	try {
+	@RequestMapping("/cafe/delete")
+	public String delete(int num, HttpServletRequest request) {
+		service.deleteContent(num, request);
+		return "redirect:/cafe/list";
+	}
+	
+	@RequestMapping("/cafe/updateform")
+	public String updateForm(HttpServletRequest request) {
+		service.getData(request);
+		return "cafe/updateform";
+	}
+	
+	@RequestMapping("/cafe/update")
+	public String update(CafeDto dto) {
+		service.updateContent(dto);
+		return "cafe/update";
+	}
+	
+	//새로운 댓글 저장 요청 처리
+	@RequestMapping("/cafe/comment_insert")
+	public String commentInsert(HttpServletRequest request, int ref_group) {
+		
+		service.saveComment(request);
+	
+		return "redirect:/cafe/detail?num="+ref_group;
+	}
+	//댓글 더보기 요청 처리
+	@RequestMapping("/cafe/ajax_comment_list")
+	public String commentList(HttpServletRequest request) {
+		
+		//테스트를 위해 시간 지연 시키기
+		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-    	
-       service.moreCommentList(request);
-       
-       return "cafe/ajax_comment_list";
-    }
-    //댓글 삭제 요청 처리
-    @RequestMapping("/cafe/comment_delete")
-    @ResponseBody
-    public Map<String, Object> commentDelete(HttpServletRequest request) {
-       service.deleteComment(request);
-       Map<String, Object> map=new HashMap<String, Object>();
-       map.put("isSuccess", true);
-       // {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
-       return map;
-    }
-    //댓글 수정 요청처리 (JSON 을 응답하도록 한다)
-    @RequestMapping("/cafe/comment_update")
-    @ResponseBody
-    public Map<String, Object> commentUpdate(CafeCommentDto dto, HttpServletRequest request){
-       service.updateComment(dto);
-       Map<String, Object> map=new HashMap<String, Object>();
-       map.put("isSuccess", true);
-       // {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
-       return map;
-    }
+		
+		service.moreCommentList(request);
+		
+		return "cafe/ajax_comment_list";
+	}
+	//댓글 삭제 요청 처리
+	@RequestMapping("/cafe/comment_delete")
+	@ResponseBody
+	public Map<String, Object> commentDelete(HttpServletRequest request) {
+		service.deleteComment(request);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+		return map;
+	}
+	//댓글 수정 요청처리 (JSON 을 응답하도록 한다)
+	@RequestMapping("/cafe/comment_update")
+	@ResponseBody
+	public Map<String, Object> commentUpdate(CafeCommentDto dto, HttpServletRequest request){
+		service.updateComment(dto);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+		return map;
+	}
 }
-
-
